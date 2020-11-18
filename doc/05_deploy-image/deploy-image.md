@@ -39,7 +39,7 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
     - Paste your public SSH key. This is used when you ssh into the provisioned compute later.
     - Choose an existing virtual cloud network.
     - Select a subnet compartment and subnet.
-    - Enter the JDBC URL for the ADB instance. The TNS_ADMIN entry points to the directory where you will have uploaded and unzipped the wallet, e.g. `jdbc:oracle:thin:@atpfinance_low?TNS_ADMIN=/etc/oracle/graph/wallets`
+    - Enter the JDBC URL for the ADB instance. The TNS_ADMIN entry points to the directory where you will have uploaded and unzipped the wallet, e.g. `jdbc:oracle:thin:@hackmakers_high?TNS_ADMIN=/etc/oracle/graph/wallets`
 
   ***Note: This JDBC URL is stored in a configuration which can be updated later if necessary.***
 
@@ -79,7 +79,7 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
    Here you need to open port 7007. Click on **Add Ingress Rules** and add the following values as shown below:
 
     - **Source Type:** CIDR
-    - **Source CIDR**: &lt;IP address of your PC&gt;/32
+    - **Source CIDR**: 0.0.0.0 (This is for testing, replace this to the IP address of the client machines for actual use.)
     - **IP Protocol:** TCP
     - **Source Port Range:** All
     - **Destination Port Range:** 7007
@@ -87,23 +87,23 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
     ![Add Ingress Rule](images/ingress_rule_7007.png " ")
 
-    *Note 1: If you reconnect at a later date or connect to your company's VPN, your local machine's IP address may change.*
-
-    *Note 2: Make sure to enter your PC's IP address, not your LAN/Wifi's IP address.*
-
 7. To connect to the instance, go the environment where you generated your SSH Key. You can use `Oracle Cloud Shell`, `Terminal` if you are using MAC, or `Gitbash` if you are using Windows. On your terminal or gitbash enter the following command:
 
     *Note: For Oracle Linux VMs, the default username is **opc***
 
     If your SSH Keys are kept under `HOME/.ssh/` directory, run:
     ```
-    <copy>ssh opc@<public_ip_address></copy>
+    <copy>
+    ssh opc@<public_ip_address>
+    </copy>
     ```
 
     If you have a different path for your SSH key, enter the following:
 
     ```
-    <copy>ssh -i &lt;path_to_private_ssh_key> opc@&lt;public_ip_address></copy>
+    <copy>
+    ssh -i <path_to_private_ssh_key> opc@<public_ip_address>
+    </copy>
     ```
 
     ![](images/ssh_first_time.png " ")
@@ -121,7 +121,9 @@ The steps are as follows:
 1. SSH into the compute instance using the private key you created earlier. First navigate to the folder where you created your SSH Keys. And connect using:
 
     ```
-    <copy>ssh -i &lt;private_key> opc@&lt;public_ip_for_compute></copy>
+    <copy>
+    ssh -i <private_key> opc@<public_ip_for_compute>
+    </copy>
     ```
     *Note: You should not include the angle brackets <> in you code.*
 
@@ -134,6 +136,7 @@ The steps are as follows:
     ![](images/DB_connection.png " ")
 
     In Database Connection window, select **Instance Wallet** as your Wallet Type, click **Download Wallet**.
+
     ![](images/wallet_type.png " ")
 
     In the Download Wallet dialog, enter a wallet password in the Password field and confirm the password in the Confirm Password field.
@@ -157,8 +160,7 @@ The steps are as follows:
     Open a new Terminal, navigate to the folder where you created your SSH Keys, and enter the following command:
 
     ```
-    ## copy the wallet. Once again modify with correct values for your setup.
-    <copy>scp -i <private_key> ~/Downloads/<ADB_Wallet>.zip opc@<public_ip_for_compute>:/etc/oracle/graph/wallets</copy>
+    scp -i <private_key> ~/Downloads/<ADB_Wallet>.zip opc@<public_ip_for_compute>:/etc/oracle/graph/wallets
     ```
 
     ![](images/copy_wallet.png " ")
@@ -170,11 +172,9 @@ The steps are as follows:
     Unzip the ADB wallet to the `/etc/oracle/graph/wallets` directory. Modify the commands as appropriate for your environment and execute them as `opc`.
 
     ```
-    <copy>
     cd /etc/oracle/graph/wallets
     unzip <ADB_Wallet>.zip
     chgrp oraclegraph *
-    </copy>
     ```
 
     The above is just one way of achieving the desired result, i.e. giving the `oraclegraph` user access to the ADB wallet. There are alternative methods.
@@ -185,34 +185,21 @@ The steps are as follows:
 
     ```
     ## open the tnsnames and get the service name you will use later.
-    <copy>cat /etc/oracle/graph/wallets/tnsnames.ora</copy>
+    cat /etc/oracle/graph/wallets/tnsnames.ora
     ```
 
     ```
     ## you will see something similar to
-    atpfinance_low =
-        (description=
-            (address=
-                (https_proxy=proxyhostname)(https_proxy_port=80)(protocol=tcps)(port=1522)
-                (host=adwc.example.oraclecloud.com)
-            )
-            (connect_data=(service_name=adwc1_low.adwc.oraclecloud.com))
-            (security=(ssl_server_cert_dn="adwc.example.oraclecloud.com,OU=Oracle BMCS US,O=Oracle Corporation,L=Redwood City,ST=California,C=US"))
-    )
+
+    hackmakers_high =
+        (description= (retry_count=20)(retry_delay=3)
+            (address=(protocol=tcps)(port=1522)(host=adb.us-ashburn-1.oraclecloud.com))
+            (connect_data=(service_name=rddainsuh6u1okc_hackmakers_high.adb.oraclecloud.com))
+            (security=(ssl_server_cert_dn="CN=adwc.uscom-east-1.oraclecloud.com,OU=Oracle BMCS US,O=Oracle Corporation,L=Redwood City,ST=California,C=US"))
+        )
     ```
 
-    An entry in tnsnames.ora is of the form  
-    `<addressname> =`  
-    &nbsp;&nbsp;`(DESCRIPTION =`  
-    &nbsp;&nbsp;&nbsp;&nbsp;`(ADDRESS_LIST = `  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(ADDRESS = (PROTOCOL = TCP)(Host = <hostname>)(Port = <port>)) `  
-    &nbsp;&nbsp;&nbsp;&nbsp;`) `  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(CONNECT_DATA =  `  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(SERVICE_NAME = <service_name>)  `  
-    &nbsp;&nbsp;&nbsp;&nbsp;`) `  
-    &nbsp;&nbsp;`)`  
-
-    Note the `addressname`, e.g. `atpfinance_low` that you will use later when connecting to the databases using JDBC.
+    Note the address name, e.g. `hackmakers_high` that you will use later when connecting to the databases using JDBC.
 
 You may now proceed to the next lab.
 
