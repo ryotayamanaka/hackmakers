@@ -64,28 +64,15 @@ Estimated time: 7 minutes
 
 Try running this SQL query. This query find all transactions from the accounts owned by 'David'.
 
-    SELECT
-        C1.FIRST_NAME    AS SRC_FIRST_NAME,
-        C2.LAST_NAME     AS SRC_LAST_NAME,
-        T.DATETIME,
-        T.AMOUNT,
-        C2.FIRST_NAME    AS DST_FIRST_NAME,
-        C2.LAST_NAME     AS DST_LAST_NAME
-    FROM
-        ACCOUNT      A1,
-        ACCOUNT      A2,
-        CUSTOMER     C1,
-        CUSTOMER     C2,
-        TRANSACTION  T
-    WHERE
-        C1.FIRST_NAME = 'David'
-        AND C1.CST_ID = A1.CST_ID
-        AND A1.ACC_ID = T.SRC_ACC_ID
-        AND T.DST_ACC_ID = A2.ACC_ID
-        AND A2.CST_ID = C2.CST_ID
-    ORDER BY
-        SRC_LAST_NAME,
-        T.DATETIME
+    SELECT c1.first_name AS src_first_name, c1.last_name AS src_last_name, t.datetime, t.amount,
+           c2.first_name AS dst_first_name, c2.last_name AS dst_last_name
+    FROM account a1, account a2, customer c1, customer c2, transaction t
+    WHERE c1.first_name = 'David'
+      AND c1.cst_id = a1.cst_id
+      AND a1.acc_id = t.src_acc_id
+      AND t.dst_acc_id = a2.acc_id
+      AND a2.cst_id = c2.cst_id
+    ORDER BY src_last_name, t.datetime
 
 ## Acknowledgements
 
