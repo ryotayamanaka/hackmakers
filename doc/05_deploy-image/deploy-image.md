@@ -32,7 +32,7 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
 2. Select the stack and then review the System Requirements and Usage Instructions. Then select the latest version and choose a compartment and click on `Launch Stack`.
 
-  ![](images/GSC203LaunchStack.png)
+  ![](images/launch_stach.jpg)
 
 3. Most of the defaults are perfect for our purposes. However, you will need to choose, or provide the following:
     - Select a VM shape. Choose an Always Free eligible shape (i.e. `VM.Standard.E2.1.Micro`).
