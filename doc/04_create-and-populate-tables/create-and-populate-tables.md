@@ -4,9 +4,7 @@
 
 In this lab, you are going to log in as user `hackmakers`. You will learn how to clear previous tables, create new tables, and populate the tables with your data.
 
-You will create 3 tables (customer, account, transaction). The entity-relationship diagram for these tables is shown below.
-
-![ER Diagram of tables](images/c360_erDiagram.png " ")
+You will create 3 tables (customer, account, transaction).
 
 Estimated time: 7 minutes
 
@@ -27,11 +25,7 @@ Estimated time: 7 minutes
 
 2. Login as `hackmakers` using the password you entered when creating the user.
 
-  *Note: Use the password you choose in Step 1.2 in Lab 4.*
-
-  ![](images/ADB_SDW_LoginAsC360.png " ")
-
-  ![](images/ADB_SDW_ConnectedAsC360.png " ")
+  ![](images/02.jpg " ")
 
 ## **STEP 2:** Drop existing tables if any
 
@@ -45,27 +39,26 @@ Estimated time: 7 minutes
     </copy>
     ```
 
-
 ## **STEP 3:** Create and populate the account table
 
 1. Go to 'Data Loading' tab and drop a file [`account.csv`](./data/account.csv).
 2. Select the appropriate column types as below, and follow the wizard to import.
 
-  ![](images/03.png " ")
+  ![](images/03.jpg " ")
 
 ## **STEP 4:** Create and populate the customer table
 
 1. Go to 'Data Loading' tab and drop a file [`customer.csv`](./data/customer.csv).
 2. Select the appropriate column types as below, and follow the wizard to import.
 
-  ![](images/04.png " ")
+  ![](images/04.jpg " ")
 
 ## **STEP 5:** Create and populate the transaction table
 
 1. Go to 'Data Loading' tab and drop a file [`transaction.csv`](./data/transaction.csv).
 2. Select the appropriate column types as below, and follow the wizard to import.
 
-  ![](images/05.png " ")
+  ![](images/05.jpg " ")
 
 ## **STEP 6:** Create and populate the Merchant table
 
