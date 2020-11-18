@@ -18,7 +18,7 @@ The following video provides an overview of the visualization component.
 
 - This lab assumes you have successfully completed Lab - Graph Query and Analysis with JShell and published the graph. It also assumes the Graph Visualization component is up and running on the compute instance on `public_ip_for_compute:7007/ui`. We will use the Graph Visualization component to explore the graph and run some PGQL queries.
 
-## **STEP 1:** Log into Graph Visualization
+## **STEP 1:** Get the Session ID
 
 To log in with the same session as the Python client which is holding the graph, get the session ID.
 
