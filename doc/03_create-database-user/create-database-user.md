@@ -1,4 +1,4 @@
-# Create and Enable a Graph User in SQLDeveloper Web
+# Create and Enable a Database User in SQL Developer Web
 
 ## Introduction
 
@@ -8,16 +8,16 @@ Estimated time: 3 minutes
 
 ### Objectives
 
-- Learn how to create a database user in SQLDeveloperWeb.
+- Learn how to create a database user in SQL Developer Web.
 
 ### Prerequisites
 
 * Oracle cloud account
 * Provisioned Autonomous Database Shared Free Tier Instance
 
-## **STEP 1:** Create the Customer_360 user
+## **STEP 1:** Create a database user
 
-1. Login as the Admin user in SQLDevWeb of the newly created ADB Free Tier instance.
+1. Login as the Admin user in SQL Developer Web of the newly created ADB Free Tier instance.
 
   Go to your Cloud Console, click **Autonomous Transaction Processing**. Select the ADB instance **ATP Graph** you created in Lab 2.
 
@@ -44,29 +44,28 @@ Estimated time: 3 minutes
 
     ```
     <copy>
-    CREATE USER customer_360 
+    CREATE USER hackmakers
     IDENTIFIED BY <specify_a_password> 
     DEFAULT TABLESPACE data 
     TEMPORARY TABLESPACE temp 
-    QUOTA UNLIMITED ON data;  
+    QUOTA UNLIMITED ON data;
 
-    CREATE ROLE GRAPH_DEVELOPER;
-    CREATE ROLE GRAPH_ADMINISTRATOR;
+    CREATE ROLE graph_developer;
+    CREATE ROLE graph_administrator;
 
-    GRANT connect, resource, graph_developer TO customer_360;
+    GRANT connect, resource, graph_developer TO hackmakers;
     </copy>
     ```
 
-  ![](images/ADB_SDW_CreateUser_C360.png " ")
+  ![](images/06.png " ")
 
   *Notes:* 
   - *The `IDENTIFIED BY` clause specifies the password (i.e whatever you replaced <specify_a_password> with)*
   - *Since [20.3 the Graph Server uses database authentication](https://docs.oracle.com/en/database/oracle/oracle-database/20/spgdg/using-inmemory-analyst-oracle-database.html). The user needs at least the graph_developer role.*
 
-## **STEP 2:** Enable SQLDevWeb for Customer_360
+## **STEP 2:** Enable SQL Developer Web for the new user
 
-1. Now provide SQLDevWeb access for this user. See the [documentation](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/sql-developer-web.html#GUID-4B404CE3-C832-4089-B37A-ADE1036C7EEA)
-  for details.
+1. Now provide SQL Developer Web access for this user. See the [documentation](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/sql-developer-web.html#GUID-4B404CE3-C832-4089-B37A-ADE1036C7EEA) for details.
 
   First clear the previous text in the SQL Worksheet.
 
@@ -77,9 +76,9 @@ Estimated time: 3 minutes
     BEGIN
       ORDS_ADMIN.ENABLE_SCHEMA(
         p_enabled => TRUE,
-        p_schema => 'CUSTOMER_360',
+        p_schema => 'hackmakers',
         p_url_mapping_type => 'BASE_PATH',
-        p_url_mapping_pattern => 'c360',
+        p_url_mapping_pattern => 'hackmakers',
         p_auto_rest_auth => TRUE
       );
       COMMIT;
@@ -88,14 +87,13 @@ Estimated time: 3 minutes
     </copy>
     ```
 
-  ![Enable SQLDevWeb for Customer_360](images/ADB_SDW_EnableLoginFor_C360.png " ")
+  ![Enable SQLDevWeb for Customer_360](images/07.png " ")
 
-  The URL for SQLDeveloperWeb for the Customer_360 user will have `c360` in place of `admin` in it.
+  The URL for SQL Developer Web for this user will have `hackmakers` in place of `admin` in it.
 
   Save the URL for the next step.
 
   For details, see the ["Provide SQL Developer Web Access to Database Users"](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/sql-developer-web.html#GUID-4B404CE3-C832-4089-B37A-ADE1036C7EEA) section in the documentation.
-
 
   You may now proceed to the next lab.
 
