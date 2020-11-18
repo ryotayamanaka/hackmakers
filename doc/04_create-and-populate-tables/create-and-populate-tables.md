@@ -21,23 +21,19 @@ Estimated time: 7 minutes
 
 1. Open the correct URL for SQL Developer Web for the user. It is almost the same URL as the one for the Admin user execpt that `admin` in that url is replaced with the schema-alias we provided, i.e. with `hackmakers`.
 
-  ![](images/admin_url.png " ")
+  ![](images/admin_url.png)
 
 2. Login as `hackmakers` using the password you entered when creating the user.
 
-  ![](images/02.jpg " ")
+  ![](images/02.jpg)
 
 ## **STEP 2:** Drop existing tables if any
 
-1. To ensure a clean slate, drop any existing tables. Copy, paste, and execute the following commands into the SQL Worksheet.
+To ensure a clean slate, drop any existing tables. Copy, paste, and execute the following commands into the SQL Worksheet.
 
-    ```
-    <copy>
     DROP TABLE account;
     DROP TABLE customer;
     DROP TABLE transaction;
-    </copy>
-    ```
 
 ## **STEP 3:** Create and populate the account table
 
