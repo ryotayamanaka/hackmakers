@@ -28,22 +28,22 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
 1. Go to your Cloud Console. Navigate to the **Marketplace** tab and enter "Graph Server and Client" in the serach bar. Click on the Oracle Graph Server and Client stack.
 
-  ![](images/OCIMarketplaceFindGraphServer.png " ")
+  ![](images/OCIMarketplaceFindGraphServer.png)
 
 2. Select the stack and then review the System Requirements and Usage Instructions. Then select the latest version and choose a compartment and click on `Launch Stack`.
 
-  ![](images/GSC203LaunchStack.png " ")
+  ![](images/GSC203LaunchStack.png)
 
 3. Most of the defaults are perfect for our purposes. However, you will need to choose, or provide the following:
-    - Select a VM shape. Choose an Always Free eligible shape (i.e. a Micro VM).
+    - Select a VM shape. Choose an Always Free eligible shape (i.e. `VM.Standard.E2.1.Micro`).
     - Paste your public SSH key. This is used when you ssh into the provisioned compute later.
     - Choose an existing virtual cloud network.
     - Select a subnet compartment and subnet.
     - Enter the JDBC URL for the ADB instance. The TNS_ADMIN entry points to the directory where you will have uploaded and unzipped the wallet, e.g. `jdbc:oracle:thin:@hackmakers_high?TNS_ADMIN=/etc/oracle/graph/wallets`
 
-  ***Note: This JDBC URL is stored in a configuration which can be updated later if necessary.***
+    ***Note: This JDBC URL is stored in a configuration which can be updated later if necessary.***
 
-  ![](images/ConfigureStackVariables_Sombrero203.png " ")
+    ![](images/ConfigureStackVariables_Sombrero203.png " ")
 
 4. Click `Next` to initiate the Resource Manager Job for the stack. The job will take 2-3 minutes to complete.
 
@@ -63,7 +63,7 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
 6. Add an Ingress Rule for port 7007 (needed later for the Graph Server).
 
-   Using the menu, under **Networking**, click on **Virtual Cloud Networks**.
+    Using the menu, under **Networking**, click on **Virtual Cloud Networks**.
 
     ![Click on the VCN](https://oracle.github.io/learning-library/oci-library/L100-LAB/Compute_Services/media/vcn1.png)
 
@@ -74,18 +74,18 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
     ![Click on Security Lists](https://oracle.github.io/learning-library/oci-library/L100-LAB/Compute_Services/media/vcn2.png)
 
-   Click on the **Default Security List** link.
+    Click on the **Default Security List** link.
 
-   Here you need to open port 7007. Click on **Add Ingress Rules** and add the following values as shown below:
+    Here you need to open port 7007. Click on **Add Ingress Rules** and add the following values as shown below:
 
     - **Source Type:** CIDR
-    - **Source CIDR**: 0.0.0.0 (This is for testing, replace this to the IP address of the client machines for actual use.)
+    - **Source CIDR**: 0.0.0.0/0 (This is for testing, replace this to the IP address of the client machines for actual use.)
     - **IP Protocol:** TCP
     - **Source Port Range:** All
     - **Destination Port Range:** 7007
     - Click on **Add Ingress Rules** at the bottom.
 
-    ![Add Ingress Rule](images/ingress_rule_7007.png " ")
+    ![](images/ingress_rule_7007.jpg)
 
 7. To connect to the instance, go the environment where you generated your SSH Key. You can use `Oracle Cloud Shell`, `Terminal` if you are using MAC, or `Gitbash` if you are using Windows. On your terminal or gitbash enter the following command:
 
@@ -93,17 +93,13 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
     If your SSH Keys are kept under `HOME/.ssh/` directory, run:
     ```
-    <copy>
     ssh opc@<public_ip_address>
-    </copy>
     ```
 
     If you have a different path for your SSH key, enter the following:
 
     ```
-    <copy>
     ssh -i <path_to_private_ssh_key> opc@<public_ip_address>
-    </copy>
     ```
 
     ![](images/ssh_first_time.png " ")
@@ -112,22 +108,7 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
 ## **STEP 2:** Upload ADB Wallet, Configure your Compute Instance.
 
-The steps are as follows:
-
-  - Copy the ADB wallet zip file into the compute.
-  - Create the `wallets` directory. Unzip the ADB wallet into that directory.
-  - Change the permissions on the wallets directory so that the user `oraclegraph` and members of the group `oraclegraph` have access to that directory.
-
-1. SSH into the compute instance using the private key you created earlier. First navigate to the folder where you created your SSH Keys. And connect using:
-
-    ```
-    <copy>
-    ssh -i <private_key> opc@<public_ip_for_compute>
-    </copy>
-    ```
-    *Note: You should not include the angle brackets <> in you code.*
-
-2.  Download your ADB Wallet if you haven't done so. Go to your Cloud console, under **Database**, select **Autonomous Transaction Processing**. If you don't see your instance, make sure the **Workload Type** is **Transaction Processing** or **All**.
+1.  Download your ADB Wallet if you haven't done so. Go to your Cloud console, under **Database**, select **Autonomous Transaction Processing**. If you don't see your instance, make sure the **Workload Type** is **Transaction Processing** or **All**.
 
     ![](images/console_atp.png " ")
 
@@ -167,9 +148,13 @@ The steps are as follows:
 
 ## **STEP 4:** Unzip ADB Wallet
 
-1.  Now go back to the Terminal window which is connected (via SSH) to the compute instance as `opc`.
+1. SSH into the compute instance using the private key you created earlier. First navigate to the folder where you created your SSH Keys. And connect using:
 
-    Unzip the ADB wallet to the `/etc/oracle/graph/wallets` directory. Modify the commands as appropriate for your environment and execute them as `opc`.
+    ```
+    ssh -i <private_key> opc@<public_ip_for_compute>
+    ```
+
+2. Unzip the ADB wallet to the `/etc/oracle/graph/wallets` directory. Modify the commands as appropriate for your environment and execute them as `opc`.
 
     ```
     cd /etc/oracle/graph/wallets
@@ -179,7 +164,7 @@ The steps are as follows:
 
     The above is just one way of achieving the desired result, i.e. giving the `oraclegraph` user access to the ADB wallet. There are alternative methods.
 
-2. Check that you used the right service name in the JDBC URL you entered when configuring the OCI stack.
+3. Check that you used the right service name in the JDBC URL you entered when configuring the OCI stack.
 
    It can be updated if necessary.
 
@@ -202,14 +187,3 @@ The steps are as follows:
     Note the address name, e.g. `hackmakers_high` that you will use later when connecting to the databases using JDBC.
 
 You may now proceed to the next lab.
-
-## Acknowledgements
-
-* **Author** - Jayant Sharma, Product Manager, Spatial and Graph
-* **Contributors** - Thanks to Jenny Tsai for helpful, constructive feedback that improved this workshop. Arabella Yao, Product Manager Intern, Database Management.
-* **Last Updated By/Date** - Jayant Sharma, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
