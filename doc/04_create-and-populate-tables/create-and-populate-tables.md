@@ -41,24 +41,27 @@ Estimated time: 7 minutes
 
 ## **STEP 3:** Create and populate the account table
 
-1. Go to 'Data Loading' tab and drop a file [`account.csv`](./data/account.csv).
-2. Select the appropriate column types as below, and follow the wizard to import.
+1. Go to 'Data Loading' tab and drop a file [`account.csv`](https://raw.githubusercontent.com/ryotayamanaka/hackmakers/main/data/account.csv).
+2. Select the appropriate **column types** and **PK** as below. 
+3. Follow the wizard to import.
 
-  ![](images/03.jpg " ")
+  ![](images/03.jpg)
 
 ## **STEP 4:** Create and populate the customer table
 
-1. Go to 'Data Loading' tab and drop a file [`customer.csv`](./data/customer.csv).
-2. Select the appropriate column types as below, and follow the wizard to import.
+1. Go to 'Data Loading' tab and drop a file [`customer.csv`](https://raw.githubusercontent.com/ryotayamanaka/hackmakers/main/data/customer.csv).
+2. Select the appropriate **column types** and **PK** as below. 
+3. Follow the wizard to import.
 
-  ![](images/04.jpg " ")
+  ![](images/04.jpg)
 
 ## **STEP 5:** Create and populate the transaction table
 
-1. Go to 'Data Loading' tab and drop a file [`transaction.csv`](./data/transaction.csv).
-2. Select the appropriate column types as below, and follow the wizard to import.
+1. Go to 'Data Loading' tab and drop a file [`transaction.csv`](https://raw.githubusercontent.com/ryotayamanaka/hackmakers/main/data/transaction.csv).
+2. Select the appropriate **column types** and **PK** as below. 
+3. Follow the wizard to import.
 
-  ![](images/05.jpg " ")
+  ![](images/05.jpg)
 
 ## **STEP 6:** Create and populate the Merchant table
 
