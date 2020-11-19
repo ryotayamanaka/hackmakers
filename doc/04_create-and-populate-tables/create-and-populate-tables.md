@@ -19,13 +19,13 @@ Estimated time: 7 minutes
 
 ## **STEP 1:** Log in to SQL Developer Web
 
-1. Open the correct URL for SQL Developer Web for the user. It is almost the same URL as the one for the Admin user execpt that `admin` in that url is replaced with the schema-alias we provided, i.e. with `hackmakers`.
+Open the correct URL for SQL Developer Web for the user. It is almost the same URL as the one for the Admin user execpt that `admin` in that url is replaced with the schema-alias we provided, i.e. with `hackmakers`.
 
-  ![](images/admin_url.png)
+![](images/admin_url.png)
 
-2. Login as `hackmakers` using the password you entered when creating the user.
+Login as `hackmakers` using the password you entered when creating the user.
 
-  ![](images/02.jpg)
+![](images/02.jpg)
 
 ## **STEP 2:** Drop existing tables if any
 
@@ -41,7 +41,7 @@ To ensure a clean slate, drop any existing tables. Copy, paste, and execute the 
 2. Select the appropriate **column types** and **PK** as below. 
 3. Follow the wizard to import.
 
-  ![](images/03.jpg)
+![](images/04.jpg)
 
 ## **STEP 4:** Create and populate the customer table
 
@@ -49,7 +49,7 @@ To ensure a clean slate, drop any existing tables. Copy, paste, and execute the 
 2. Select the appropriate **column types** and **PK** as below. 
 3. Follow the wizard to import.
 
-  ![](images/04.jpg)
+![](images/03.jpg)
 
 ## **STEP 5:** Create and populate the transaction table
 
@@ -57,7 +57,7 @@ To ensure a clean slate, drop any existing tables. Copy, paste, and execute the 
 2. Select the appropriate **column types** and **PK** as below. 
 3. Follow the wizard to import.
 
-  ![](images/05.jpg)
+![](images/05.jpg)
 
 ## **STEP 6:** Create and populate the Merchant table
 
@@ -73,7 +73,4 @@ Try running this SQL query. This query find all transactions from the accounts o
       AND a2.cst_id = c2.cst_id
     ORDER BY src_last_name, t.datetime
 
-## Acknowledgements
-
-* **Original Author** - Jayant Sharma, Product Manager, Spatial and Graph
-* **Contributors** - Thanks to Jenny Tsai for helpful, constructive feedback that improved this workshop.
+Now your Autonomous Database is ready with the demo dataset. Please proceed [the next step](../05_deploy-image/deploy-image.md) to setup Graph Server, or go back to [the index](../../README.md).
