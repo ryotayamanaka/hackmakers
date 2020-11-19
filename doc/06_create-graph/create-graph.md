@@ -91,7 +91,3 @@ Run the query below, which find all transactions from the accounts owned by 'Dav
     """).print()
 
 You may now proceed to the next lab.
-
-## Acknowledgements
-
-* **Original Author** - Jayant Sharma, Product Manager, Spatial and Graph
