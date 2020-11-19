@@ -24,7 +24,7 @@ SSH into the compute instance where you installed the graph server.
 
 Then start a client shell instance that connects to the server
 
-    opgpy --base_url http://localhost:7007 --user hackmakers
+    opgpy --base_url https://localhost:7007 --user hackmakers
     
     enter password for user hackmakers (press Enter for no password): 
 
