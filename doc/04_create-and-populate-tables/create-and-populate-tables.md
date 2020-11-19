@@ -59,7 +59,7 @@ To ensure a clean slate, drop any existing tables. Copy, paste, and execute the 
 
 ![](images/05.jpg)
 
-## **STEP 6:** Create and populate the Merchant table
+## **STEP 6:** Run a SQL Query
 
 Try running this SQL query. This query find all transactions from the accounts owned by 'David'.
 
