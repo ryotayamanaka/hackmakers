@@ -53,12 +53,21 @@ Set up the create property graph statement.
           SOURCE KEY(src_acc_id) REFERENCES account
           DESTINATION KEY(dst_acc_id) REFERENCES account
           LABEL "transfered_to"
+      , hackmakers.account
+          KEY (acc_id)
+          SOURCE KEY(cst_id) REFERENCES customer
+          DESTINATION KEY(acc_id) REFERENCES account
+          LABEL "owns"
       )
     '''
 
 Run the statement.
 
     session.prepare_pgql(statement).execute()
+
+If you need to recreate the graph, destroy the graph first and run the statement above again.
+
+    graph.destroy()
 
 This process can take a while depending on various factors such as network bandwidth and database load.
 
