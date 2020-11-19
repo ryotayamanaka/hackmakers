@@ -117,23 +117,4 @@ Watch a video demonstration of provisioning an autonomous database in Autonomous
 
 11.  Your instance will begin provisioning. In a few minutes the state will turn from Provisioning to Available. At this point, your Autonomous Transaction Processing database is ready to use! Have a look at your instance's details here including its Name, Database Version, OCPU Count and Storage size.
 
-    ![](images/atp-graph-provisioning.png " ")
-
-    ![](images/atp-graph-available.png " ")
-
-You may now proceed to the next lab.
-
-## Want to Learn More?
-
-Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-workflow.html#GUID-5780368D-6D40-475C-8DEB-DBA14BA675C3) for documentation on the typical workflow for using Autonomous Data Warehouse.
-
-## Acknowledgements
-
-- **Author** - Nilay Panchal, ADB Product Management
-- **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Arabella Yao, Product Manager Intern, Database Management, July 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+You may now proceed to [the next lab](../03_create-database-user/create-database-user.md).
