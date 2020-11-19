@@ -73,4 +73,6 @@ Try running this SQL query. This query find all transactions from the accounts o
       AND a2.cst_id = c2.cst_id
     ORDER BY src_last_name, t.datetime
 
-Now your Autonomous Database is ready with the demo dataset. Please proceed [the next step](../05_deploy-image/deploy-image.md) to setup Graph Server, or go back to [the index](../../README.md).
+Now your Autonomous Database is ready with the demo dataset.
+
+Please proceed to [the next step](../05_deploy-image/deploy-image.md) to setup Graph Server, or go back to [the index](../../README.md).
