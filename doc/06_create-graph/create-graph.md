@@ -44,7 +44,7 @@ Set up the create property graph statement.
           LABEL "Customer"
           PROPERTIES (cst_id, first_name, last_name)
       , hackmakers.account
-          LABEL "Product"
+          LABEL "Account"
           PROPERTIES (acc_id)
       )
       EDGE TABLES (
