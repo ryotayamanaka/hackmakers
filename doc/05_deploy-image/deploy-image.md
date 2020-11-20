@@ -186,4 +186,19 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
     Note the address name, e.g. `hackmakers_high` that you will use later when connecting to the databases using JDBC.
 
-You may now proceed to the next lab.
+4. (Optional) If you need to reset the JDBC URL registered, edit the Graph Server config file.
+
+    ```
+    <copy>vi /etc/oracle/graph/pgx.conf</copy>
+    ```
+
+   Check the `"jdbc_url"` value in the `"pgx_realm"` entry and update it if necessary.
+
+   Check it's status and restart or start it as follows.
+
+    ```
+    systemctl status pgx
+    sudo systemctl restart pgx
+    ```
+
+You may now proceed to [the next lab](../06_create-graph/create-graph.md).
