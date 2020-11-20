@@ -6,7 +6,7 @@
 
 Create an Autonomous Database instance and load the sample dataset:
 
-1. [Create SSH Keys](https://github.com/oracle/learning-library/blob/master/common/labs/generate-ssh-key/generate-ssh-keys.md)
+1. [Create SSH Keys](./doc/01_generate-ssh-key/generate-ssh-keys.md)
 2. [Provision Autonomous Database Shared Free Tier Instance](./doc/02_provision-free-tier-adb/provision-free-tier-adb.md)
 3. [Create and Enable a Database User in SQL Developer Web](./doc/03_create-database-user/create-database-user.md)
 4. [Create and Populate Database Tables](./doc/04_create-and-populate-tables/create-and-populate-tables.md)
