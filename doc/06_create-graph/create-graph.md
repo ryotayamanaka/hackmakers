@@ -35,7 +35,7 @@ You should see the following if the client shell starts up successfully.
 
 ## **STEP 2:** Create the graph
 
-Set up the create property graph statement.
+Set the create property graph statement.
 
     statement = '''
     CREATE PROPERTY GRAPH "Hackmakers"
@@ -68,8 +68,6 @@ Run the statement.
 If you need to recreate the graph, destroy the graph first and run the statement above again.
 
     graph.destroy()
-
-This process can take a while depending on various factors such as network bandwidth and database load.
 
 ## **STEP 3:** Check the newly created graph
 
